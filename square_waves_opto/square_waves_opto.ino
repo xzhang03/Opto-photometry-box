@@ -6,15 +6,17 @@ const float modifier = 1.027;
 const byte ptm_pin = 0;
 const byte opto_pin = 2;
 
+// On for A seconds every B seconds
+const unsigned long ptm_pulsewidth = 6 * 1000 * modifier; // in micro secs (A)
+const unsigned long ptm_cycletime = 20 * 1000 * modifier; // in micro secs (B)
 
-const unsigned long ptm_pulsewidth = 6 * 1000 * modifier; // in micro secs
-const unsigned long ptm_cycletime = 20 * 1000 * modifier; // in micro secs
+// On for A seconds every B seconds
+const unsigned long opto_pulsewidth = 10 * modifier; // in milli secs (A)
+const unsigned long opto_cycletime = 100 * modifier; // in milli secs (A)
 
-const unsigned long opto_pulsewidth = 10 * modifier; // in milli secs
-const unsigned long opto_cycletime = 100 * modifier; // in milli secs
-
-const unsigned long train_length = 5 * 1000 * modifier; // in milli secs
-const unsigned long train_cycletime = 20 * 1000 * modifier; // in milli secs
+// Train is on for A seconds every B seconds
+const unsigned long train_length = 5 * 1000 * modifier; // in milli secs (A)
+const unsigned long train_cycletime = 20 * 1000 * modifier; // in milli secs (B)
 
 
 // Time variables
@@ -52,6 +54,8 @@ void loop() {
   
   //  Train
   if ((tnow_opto % train_cycletime) <= train_length){
+
+    // Actual stim
     if ((tnow_opto % opto_cycletime) <= opto_pulsewidth){
       opto = true;
       digitalWrite(opto_pin, HIGH);
