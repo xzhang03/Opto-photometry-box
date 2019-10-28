@@ -7,7 +7,8 @@ const byte opto_pin = 2; // 2
 // Everything operates in 20 ms cycles (50 Hz)
 // Order to things: buffer -> photometry -> buffer -> opto pulses
 const int ptm_width = 6000 * modifier; // in micro secs
-const int ptm_buffer = 2000 * modifier; // in micro secs
+const int ptm_buffer_pre = 3500 * modifier; // in micro secs
+const int ptm_buffer_post = 500 * modifier; // in micro secs
 const int opto_width = 10000 * modifier; // in micro secs
 
 // Opto pulse settings
@@ -57,13 +58,13 @@ void loop() {
   }
   
   // Pre-buffer
-  delayMicroseconds(ptm_buffer);
+  delayMicroseconds(ptm_buffer_pre);
 
   // Turn on and off photometry LED
   digitalWrite(ptm_pin, HIGH);
   delayMicroseconds(ptm_width);
   digitalWrite(ptm_pin, LOW);
-  delayMicroseconds(ptm_buffer);
+  delayMicroseconds(ptm_buffer_post);
 
   // Turn on opto LED
   if (opto){ 
