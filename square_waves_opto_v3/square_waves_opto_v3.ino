@@ -1,6 +1,6 @@
 // This is the simple version.
 
-const float modifier = 1.006;
+const float modifier = 1.00;
 const byte ptm_pin = 0; // 0
 const byte opto_pin = 2; // 2
 
@@ -13,7 +13,7 @@ const int opto_width = 10000 * modifier; // in micro secs
 
 // Opto pulse settings
 const byte opto_per = 5; // Number of photometry pulses per opto pulse (A). Can be: 1, 2, 5, 10, 25, 50.
-const byte train_length = 50; // Number of opto pulses per train (B). Duration is  B / (50 / A).
+const byte train_length = 10; // Number of opto pulses per train (B). Duration is  B / (50 / A).
 const long train_cycle = 30 * 50; // First number is in seconds. How often does the train come on.
 
 // Switch
